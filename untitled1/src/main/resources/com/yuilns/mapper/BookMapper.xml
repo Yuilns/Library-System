@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+<!-- mybatis-mapper.xml -->
+
+<mapper namespace="com.yuilns.mapper.BookMapper">
+    <resultMap id="BookResultMap" type="book">
+        <result column="书名" property="bookname"/>
+        <result column="作者" property="writer"/>
+        <result column="出版社" property="publisher"/>
+        <result column="库存数量" property="quantity"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BookResultMap">
+        select
+            * from
+        图书信息
+    </select>
+
+    <select id="selectById" resultMap="BookResultMap">
+        select * from 图书信息 where Book_id = #{Book_id}
+    </select>
+
+    <!--
+        条件查询
+    -->
+    <!--    <select id="selectByCondition" resultMap="BookResultMap">-->
+    <!--        select *-->
+    <!--        from 读者信息-->
+    <!--        where 性别 = #{gender}-->
+    <!--            and 年龄 > #{age}-->
+    <!--            and 姓名 like #{readername}-->
+    <!--    </select>-->
+
+
+    <insert id="addBook" useGeneratedKeys="true" keyProperty="Book_id">
+        INSERT INTO 图书信息(书名, 作者, 出版社, 库存数量)
+            VALUES(#{bookname}, #{writer}, #{publisher}, 20)
+    </insert>
+
+    <select id="countByName" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM 图书信息
+        WHERE 书名 = #{bookname}
+    </select>
+    <select id="findBookByName" resultType="com.yuilns.pojo.Book">
+        SELECT * FROM 图书信息 WHERE 书名=#{bookname}
+    </select>
+
+    <update id="updateBookStock">
+        UPDATE 图书信息
+        SET 库存数量=库存数量+1
+        WHERE Book_id=#{Book_id}
+    </update>
+</mapper>

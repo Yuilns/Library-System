@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+<!-- mybatis-mapper.xml -->
+
+
+<mapper namespace="com.yuilns.mapper.ManagerMapper">
+
+    <resultMap id="ManagerResultMap" type="manager">
+        <result column="管理员姓名" property="manager_name"/>
+        <result column="管理区域" property="area"/>
+        <result column="年龄" property="age"/>
+        <result column="性别" property="gender"/>
+        <result column="联系电话" property="tel"/>
+        <result column="登录账号" property="username"/>
+        <result column="登录密码" property="password"/>
+        <result column="权限" property="root"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="ManagerResultMap">
+            SELECT
+                *
+            FROM 图书馆管理员
+        </select>
+
+    <select id="selectListById" resultMap="ManagerResultMap">
+        SELECT
+            *
+        FROM 图书馆管理员
+        WHERE 登录账号=#{username}
+    </select>
+    <select id="selectById" resultType="com.yuilns.pojo.Manager">
+        SELECT * FROM 图书馆管理员
+        WHERE 登录账号 =#{username}
+    </select>
+
+    <insert id="insertManager" useGeneratedKeys="true" keyProperty="User_id">
+        insert into 图书馆管理员(管理员姓名, 管理区域, 年龄, 性别, 联系电话, 登录账号, 登录密码, 权限)
+        values(#{manager_name}, #{area}, #{age}, #{gender}, #{tel}, #{username}, #{password}, #{root})
+    </insert>
+
+    <update id="updateManager">
+        UPDATE 图书馆管理员
+               SET
+                    管理员姓名 = #{manager_name},
+                    管理区域 = #{area},
+                    年龄 = #{age},
+                    性别 = #{gender},
+                    联系电话 = #{tel},
+                    权限 = #{root}
+        WHERE User_id = #{User_id}
+    </update>
+
+    <delete id="deleteManagerById">
+        DELETE
+        FROM 图书馆管理员
+        WHERE User_id = #{userId}
+    </delete>
+
+<!--    <sql id="Manager_column">-->
+<!--        User_id, 管理员姓名 AS manager_name, 管理区域 AS area, 年龄 AS age, 性别 AS gender, 联系电话 AS tel, 登录账号 AS username,登录密码 AS password, 权限 AS root-->
+<!--    </sql>-->
+<!--    <select id="selectAll" resultType="Manager">-->
+<!--        SELECT-->
+<!--            <include refid="Manager_column"/>-->
+<!--        FROM 图书馆管理员-->
+<!--    </select>-->
+
+
+</mapper>

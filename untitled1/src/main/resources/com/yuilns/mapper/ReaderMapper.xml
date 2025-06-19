@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+<!-- mybatis-mapper.xml -->
+
+
+<mapper namespace="com.yuilns.mapper.ReaderMapper">
+    <resultMap id="ReaderResultMap" type="reader1">
+        <result column="姓名" property="readername"/>
+        <result column="年龄" property="age"/>
+        <result column="性别" property="gender"/>
+        <result column="联系电话" property="tel"/>
+        <result column="身份证号" property="idcardnumber"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="ReaderResultMap">
+        select
+            *
+        from 读者信息
+    </select>
+
+    <select id="selectById" resultMap="ReaderResultMap">
+        select
+            *
+        from 读者信息
+        where Reader_id = #{id}
+    </select>
+
+    <!--
+        条件查询
+    -->
+    <!--    <select id="selectByCondition" resultMap="ReaderResultMap">-->
+    <!--        select *-->
+    <!--        from 读者信息-->
+    <!--        where 性别 = #{gender}-->
+    <!--            and 年龄 > #{age}-->
+    <!--            and 姓名 like #{readername}-->
+    <!--    </select>-->
+
+    <!--
+        动态条件查询
+    -->
+    <select id="selectByCondition" resultMap="ReaderResultMap">
+        select *
+        from 读者信息
+        where
+        <if test="gender!=null and gender!=''">
+            性别 = #{gender}
+        </if>
+        <if test="age!=null">
+            and 年龄 > #{age}
+        </if>
+        <if test="readername!=null and readername!=''">
+            and 姓名 like #{readername}
+        </if>
+
+    </select>
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="Reader_id">
+        insert into 读者信息(姓名,性别,联系电话,年龄,身份证号)
+        values(#{readername},#{gender},#{tel},#{age},#{idcardnumber});
+    </insert>
+
+    <insert id="add2" useGeneratedKeys="true" keyProperty="Reader_id">
+        insert into 读者信息(姓名,性别,联系电话,年龄,身份证号)
+        values(#{readername},#{gender},#{tel},#{age},#{idcardnumber});
+    </insert>
+
+    <update id="update">
+        update 读者信息
+        set
+            姓名 = #{readername},
+            性别 = #{gender},
+            联系电话 = #{tel},
+            年龄 = #{age},
+            身份证号 = #{idcardnumber}
+        where Reader_id = #{Reader_id}
+    </update>
+
+    <delete id="deleteById">
+        delete from 读者信息 where Reader_id = #{Reader_id}
+    </delete>
+    <delete id="deleteByIdCard">
+        delete from 读者信息 where 身份证号 = #{idcardnumber}
+    </delete>
+
+
+    <select id="selectByIdCard" resultType="com.yuilns.pojo.Reader1">
+        select * from 读者信息 where 身份证号 = #{idCard}
+    </select>
+</mapper>

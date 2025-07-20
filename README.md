@@ -22,10 +22,10 @@ Java实训课程成果——图书馆管理系统
 - Maven 3.6+
 
 ### 安装与运行
-```bash
 # 1. 克隆仓库
+```bash
 git clone https://github.com/Yuilns/Library-System.git
-
+```
 # 2. 导入IntelliJ IDEA
 File > Open > 选择项目目录
 
@@ -37,6 +37,27 @@ IDEA会自动加载pom.xml中的依赖
 
 # 5. 运行主类
 Library/src/main/java/com/library/Login.java
+
+## 📂 项目结构
+Library-System/
+├── .idea            # IDEA 项目配置文件夹
+├── Library
+│   └── src          # 源文件
+│       └── main
+│           ├── java
+│           │   ├── com.yuilns
+│           │   │   ├── mapper            # MyBatis 的 Mapper 接口文件夹
+│           │   │   └── pojo              # 实体类文件夹
+│           │   └── org.example           # 工具、功能类文件夹
+│           └── resources
+│               ├── com.yuilns.mapper     # MyBatis 的 Mapper XML 文件文件夹
+│               ├── logback.xml           # Logback 日志配置文件
+│               └── mybatis-config.xml    # MyBatis 配置文件
+├── out             # 输出文件夹
+├── .gitignore      # Git 忽略文件
+├── pom.xml         # Maven 配置文件
+└── README.md       # 项目说明文件
+
 
 ## 🧪 测试账号
 | 权限级别       | 用户名   | 密码        |
@@ -63,15 +84,15 @@ A：检查`db.properties`中的配置，确保MySQL服务已启动
 2. **创建新分支**  
    ```bash
    git checkout -b feature/your-feature
-
+    ```
 3. **提交更改**  
    ```bash
    git commit -m 'Add some feature'
-
+    ```
 4. **推送分支**  
    ```bash
    git push origin feature/your-feature
-
+    ```
 5. **创建Pull Request**  
    在GitHub仓库页面点击"New Pull Request"
 

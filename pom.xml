@@ -5,12 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>practice2</artifactId>
+    <artifactId>Library-System</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>untitled</module>
-        <module>untitled1</module>
+        <module>Library</module>
+        <module>Library</module>
+        <module>Library</module>
     </modules>
 
     <properties>

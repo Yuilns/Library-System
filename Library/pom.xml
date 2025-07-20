@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.example</groupId>
-        <artifactId>practice2</artifactId>
+        <artifactId>Library-System</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>untitled1</artifactId>
+    <artifactId>Library</artifactId>
     <packaging>jar</packaging>
 
     <name>untitled1</name>

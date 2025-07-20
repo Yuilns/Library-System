@@ -67,7 +67,6 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(null, "用户名和密码不能为空", "输入错误", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
-
 				try (SqlSession sqlSession= MyBatisUtil.getSqlSessionFactory().openSession()){
 					ManagerMapper managerMapper= sqlSession.getMapper(ManagerMapper.class);
 					List<Manager> managers=managerMapper.selectListById(uid);
